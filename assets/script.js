@@ -98,7 +98,7 @@ function submit()
   {
     return;
   }
-  else if (JSON.parse(localStorage.getItem("savedNames")) !== null && JSON.parse(localStorage.getItem("historyScore")) !== null) 
+  else if (JSON.parse(localStorage.getItem("savedNames")) !== null && JSON.parse(localStorage.getItem("savedScores")) !== null) 
   {
     savedNames = JSON.parse(localStorage.getItem("savedNames"));
     savedScores = JSON.parse(localStorage.getItem("savedScores"));
