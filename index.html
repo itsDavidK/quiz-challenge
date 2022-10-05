@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/style.css"/>
+    <title>Quiz Challenge</title>
+  </head>
+  <body>
+
+    <main class = "front">
+      <h1 id = "instruction">Click "Start" to Begin! <br> ==========================</h1>
+
+        <div class = "description">
+          <p>If you get all 5 questions right, then you are a certified genius.</p>
+          <p>You got 1 minute to answer them all!</p>
+        </div>
+
+      <ol class = "choices">   
+          <li data-state = "1"></li>
+          <li data-state = "2"></li>
+          <li data-state = "3"></li>
+          <li data-state = "4"></li>
+      </ol>
+      <button class = "start">Start</button>
+      <button class = "record">Scores</button>
+      <h3 class = timer></h3>
+      <p class = "response"></p>
+    </main>  
+
+    <nav class = "score">
+      <p>Enter Your Name.</p>
+      <input type="text" name="name" id="username" placeholder="Afro Ninja" />    
+      <section>
+        <button id = "save">Save</button>
+      </section> 
+    </nav>
+
+    <section id = "scoreSection">
+      <button id = "reset">Reset</button>
+      <button id = "restart">Return</button>
+      <div>
+        <H1>High Scores <br> ==============</H1>
+      </div>
+      <ul id = "scorelist"></ul>
+    </section> 
+
+    <footer>
+      <a class= "troll" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Answers</a>
+    </footer>
+
+  <script src="./assets/script.js"></script>
+  </body>
+ 
+</html>
