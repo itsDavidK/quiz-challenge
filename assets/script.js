@@ -154,7 +154,11 @@ choiceEl.addEventListener("click", function (event)
   var element = event.target;
   var state = element.getAttribute("data-state");
 
-  if (state !== answer) 
+  if(state == null)
+  {
+    return;
+  }
+  else if (state !== answer) 
   {
     timer-= 10;
     document.querySelector(".response").textContent = "Incorrect!";
