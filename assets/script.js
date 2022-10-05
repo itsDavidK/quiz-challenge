@@ -1,3 +1,4 @@
+//variables declared from the index.html file
 var instructionEl = document.querySelector("#instruction");
 var startEl = document.querySelector(".start");
 var timerEl = document.querySelector(".timer");
@@ -8,6 +9,7 @@ var scorelistEl = document.querySelector("#scorelist");
 var usernameEl = document.querySelector("#username");
 var saveEl = document.querySelector("#save");
 
+//variables declared that will be used for the quiz features
 var savedNames = [];
 var savedScores = [];
 var timer = 60;
@@ -16,6 +18,7 @@ var questionList = [];
 var count = 0;
 var timeDisplay;
 
+//quizStart() starts the quiz, and sets the display so the user could read and answer the questions.
 function quizStart () 
 {
   document.querySelector(".description").classList.add("hidden");
@@ -23,7 +26,7 @@ function quizStart ()
   choiceEl.classList.remove("hidden");
   countdown();
   startEl.setAttribute("style", "display: none");
-
+  //questions are put into a nested array.
   questionList[0] = ['What is 9 + 10?', '19', '910', '21', 'window', '3']
   questionList[1] = ['https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'Justin Timberlake', 'Rick Astley', 'Justin Bieber', 'Rick Ross', '2'];
   questionList[2] = ['When was Harambe killed?', 'May 28th, 2016', 'May 17th, 2017', 'June 6th, 2006', 'Today', '1'];
@@ -32,6 +35,8 @@ function quizStart ()
   nextQuestion(questionList[count]);
 }
 
+
+//countdown() is a timer that counts down from 60 seconds, it gets called in the quizStart() function.
 function countdown() 
 {
   timeDisplay= setInterval(function () {
@@ -49,6 +54,7 @@ function countdown()
   }, 1000);
 }
 
+//nextQuestion(input) checks if there is still time remaining, and then displays the next question until there is none left.
 function nextQuestion(input) {
   if (timer <= 0) 
   {
@@ -70,6 +76,7 @@ function nextQuestion(input) {
   }
 }
 
+//result() calculates the user's score for the quiz
 function result() 
 {
   clearInterval(timeDisplay);
@@ -82,6 +89,7 @@ function result()
     timerEl.textContent = "";
 }
 
+//submit() checks if the user entered a name and saves the score for the user to see in the highscore list.
 function submit()
  {
   var score = timer;
@@ -90,10 +98,10 @@ function submit()
   {
     return;
   }
-  else if (JSON.parse(localStorage.getItem("historyName")) !== null && JSON.parse(localStorage.getItem("historyScore")) !== null) 
+  else if (JSON.parse(localStorage.getItem("savedNames")) !== null && JSON.parse(localStorage.getItem("historyScore")) !== null) 
   {
-    savedNames = JSON.parse(localStorage.getItem("historyName"));
-    savedScores = JSON.parse(localStorage.getItem("historyScore"));
+    savedNames = JSON.parse(localStorage.getItem("savedNames"));
+    savedScores = JSON.parse(localStorage.getItem("savedScores"));
   }
   savedNames.push(name);
   savedScores.push(score);
@@ -102,12 +110,15 @@ function submit()
   scoreList();
 }
 
+//saveScore() saves the user's name and score. This gets called in the submit() function.
 function saveScore() 
 {
-  localStorage.setItem("historyName", JSON.stringify(savedNames));
-  localStorage.setItem("historyScore", JSON.stringify(savedScores));
+  localStorage.setItem("savedNames", JSON.stringify(savedNames));
+  localStorage.setItem("savedScores", JSON.stringify(savedScores));
 }
 
+
+//scoreList() displays the list of scores that are saved in the local storage.
 function scoreList() 
 {
   scoreSectionEl.classList.remove("hidden");
@@ -126,16 +137,20 @@ function scoreList()
   }
 }
 
+
+//scoresBtn() when this button is clicked it displays the scores list section.
 function scoresBtn() 
 {
   document.querySelector(".front").classList.add("hidden");
   document.querySelector(".troll").classList.add("hidden");
-  savedNames = JSON.parse(localStorage.getItem("historyName"));
-  savedScores = JSON.parse(localStorage.getItem("historyScore"));
+  savedNames = JSON.parse(localStorage.getItem("savedNames"));
+  savedScores = JSON.parse(localStorage.getItem("savedScores"));
   document.querySelector(".record").classList.add("hidden");
   scoreList();
 }
 
+
+// reset(); clears the names, scores, and the local storage.
 function reset() 
 {
   savedNames = [];
@@ -144,11 +159,14 @@ function reset()
   scoreList();
 }
 
+//reload() reloads the page, used after the user restarts
 function reload() 
 {
   document.location.reload();
 }
 
+
+//choiceEl checks what choice the user chose, and rewards or penalizes them accordingly.
 choiceEl.addEventListener("click", function (event) 
 {
   var element = event.target;
@@ -171,6 +189,7 @@ choiceEl.addEventListener("click", function (event)
   }
 });
 
+//click events and hides things for the default display.
 startEl.addEventListener("click", quizStart);
 scoreEl.classList.add("hidden");
 choiceEl.classList.add("hidden");

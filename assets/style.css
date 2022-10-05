@@ -7,11 +7,6 @@
     font-family: monospace
   }
 
-header {
-    margin: 2%;
-    text-align: left;
-}
-
 body {
     text-align: center;
 }
@@ -21,7 +16,7 @@ button {
     width: 140px;
     height: 60px;
     background-color: #7289da;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 button:hover {
